@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using World.WormTurns;
 
-namespace World
+namespace World.WormStrategies
 {
     class CircleWormStrategy : IWormStrategy
     {
