@@ -15,7 +15,7 @@ namespace World.WormStrategies
             Direction.R };
         private int turnNumber = -1;
 
-        public IWormTurn GetNextTurn()
+        public IWormTurn GetNextTurn(WormAndWorldData wormAndWorldData)
         {
             if (turnNumber < 0)
             {

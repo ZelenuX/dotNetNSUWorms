@@ -11,19 +11,19 @@ namespace World
     {
         private static UniqueNamesGenerator nameGenerator = new UniqueNamesGenerator("BobTheWorm_");
 
-        public string name { get; }
-        public int food { get; }
-        public IWormStrategy wormStrategy { set; private get; } = new CircleWormStrategy();
+        public string Name { get; }
+        public int Health { get; set; }
+        public IWormStrategy wormStrategy { set; private get; } = WorldProperties.GetWormStrategy();
 
-        public Worm(int food = 10)
+        public Worm(int health)
         {
-            this.food = food;
-            name = nameGenerator.generate();
+            this.Health = health;
+            Name = nameGenerator.generate();
         }
 
-        public IWormTurn GetNextTurn()
+        public IWormTurn GetNextTurn(WormAndWorldData data)
         {
-            return wormStrategy.GetNextTurn();
+            return wormStrategy.GetNextTurn(data);
         }
     }
 }

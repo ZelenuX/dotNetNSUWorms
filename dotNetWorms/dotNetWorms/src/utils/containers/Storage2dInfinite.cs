@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Utils.Containers
 {
-    class Storage2dInfinite<T> : IStorage2d<T>
+    class Storage2dInfinite<T> : AbstractStorage2d<T>
     {
         private IDictionary<long, T> container = new Dictionary<long, T>();
 
@@ -14,7 +14,7 @@ namespace Utils.Containers
             return res;
         }
 
-        public int Count { get { return container.Count; } }
+        public override int Count { get { return container.Count; } }
 
         private int keyToX(long key)
         {
@@ -26,7 +26,7 @@ namespace Utils.Containers
             return (int)key;
         }
 
-        public void ForEach(Action<int, int, T> action)
+        public override void ForEach(Action<int, int, T> action)
         {
             foreach (var xyKey in new List<long>(container.Keys))
             {
@@ -37,17 +37,17 @@ namespace Utils.Containers
             }
         }
 
-        public bool TryGet(int x, int y, out T result)
+        public override bool TryGet(int x, int y, out T result)
         {
             return container.TryGetValue(xyToKey(x, y), out result);
         }
 
-        public bool Remove(int x, int y)
+        public override bool Remove(int x, int y)
         {
             return container.Remove(xyToKey(x, y));
         }
 
-        public bool TrySet(int x, int y, T val)
+        public override bool TrySet(int x, int y, T val)
         {
             return container.TryAdd(xyToKey(x, y), val);
         }

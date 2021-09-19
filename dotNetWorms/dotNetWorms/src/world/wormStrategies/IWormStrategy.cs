@@ -7,6 +7,6 @@ namespace World.WormStrategies
 {
     interface IWormStrategy
     {
-        IWormTurn GetNextTurn();
+        IWormTurn GetNextTurn(WormAndWorldData wormAndWorldData);
     }
 }

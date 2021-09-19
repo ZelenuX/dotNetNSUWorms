@@ -7,7 +7,7 @@ using World.WormTurnPerformers;
 namespace World.WormTurns
 {
     interface IWormTurn {
-        void Perform(int wormX, int wormY, IStorage2d<Worm> worms);
+        void Perform(int wormX, int wormY, AbstractStorage2d<Worm> worms, AbstractStorage2d<Food> food);
     }
 
     enum Direction

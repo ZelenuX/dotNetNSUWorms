@@ -8,7 +8,7 @@ namespace World.WormTurnPerformers
 {
     class WormMovePerformer : IWormTurnPerformer<WormMove>
     {
-        public void ProcessTurn(int wormX, int wormY, WormMove turn, IStorage2d<Worm> worms)
+        public void ProcessTurn(int wormX, int wormY, WormMove turn, AbstractStorage2d<Worm> worms, AbstractStorage2d<Food> food)
         {
             int newX = wormX, newY = wormY;
             switch (turn.Direction)

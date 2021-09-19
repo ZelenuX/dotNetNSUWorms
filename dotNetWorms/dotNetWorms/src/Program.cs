@@ -17,7 +17,6 @@ namespace dotNetWorms
             var fileWriter = File.CreateText("./out.txt");
             World.World world = new World.World();
             world.TryAddWorm(0, 0);
-            world.TryAddWorm(0, 1);
             Console.WriteLine("Worm coords:");
             writeWorldState(world, fileWriter, 0);
             for (int i = 1; i <= 20; ++i)
