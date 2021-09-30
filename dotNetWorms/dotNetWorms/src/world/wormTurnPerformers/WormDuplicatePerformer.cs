@@ -35,7 +35,7 @@ namespace World.WormTurnPerformers
                 }
                 if (!food.TryGet(newX, newY, out var foodInCell))
                 {
-                    if (worms.TrySet(newX, newY, new Worm(initHealth)))
+                    if (worms.TrySet(newX, newY, new Worm(worm.NameGenerator, initHealth, worm.WormStrategyProvider)))
                     {
                         worm.Health -= initHealth;
                     }

@@ -1,31 +1,32 @@
 ﻿using System;
 using System.IO;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Services;
+using Utils.Generators;
 
 namespace dotNetWorms
 {
     class Program
     {
-        private static void writeWorldState(World.World world, StreamWriter writer, int stateIndex)
-        {
-            string worldState = world.ToString();
-            Console.WriteLine(stateIndex + ") " + worldState);
-            writer.WriteLine(worldState);
-        }
-
         static void Main(string[] args)
         {
-            var fileWriter = File.CreateText("./out.txt");
-            World.World world = new World.World();
-            world.TryAddWorm(0, 0);
-            Console.WriteLine("Worm coords:");
-            writeWorldState(world, fileWriter, 0);
-            for (int i = 1; i <= 20; ++i)
-            {
-                world.nextTurn();
-                writeWorldState(world, fileWriter, i);
-            }
-            fileWriter.Close();
-            Console.Read();
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        private static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
+                .ConfigureServices(services =>
+                {
+                    services.AddHostedService<WorldService>();
+
+                    services.AddSingleton<World.World>();
+                    services.AddSingleton<NormalCoordsGenerator>(new NormalCoordsGenerator(0, 5));
+                    services.AddSingleton<UniqueNamesGenerator>(new UniqueNamesGenerator("BobTheWorm_"));
+                    services.AddSingleton<WormStrategyProviderService>();
+                    services.AddSingleton<ReportWriterService>(new ReportWriterService("./out.txt"));
+                });
         }
     }
 }

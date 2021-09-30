@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Utils.Containers;
-using World.WormTurns;
 using Utils.Generators;
+using Services;
 
 namespace World
 {
@@ -16,7 +16,9 @@ namespace World
         private AbstractStorage2d<Worm> wormsOnField = new Storage2dInfinite<Worm>();
         private AbstractStorage2d<Food> foodOnField = new Storage2dInfinite<Food>();
         private StringBuilder stringBuilder = new StringBuilder();
-        private NormalCoordsGenerator coordsGenerator = new NormalCoordsGenerator(0, 5);
+        private NormalCoordsGenerator coordsGenerator;
+        private UniqueNamesGenerator nameGenerator;
+        private WormStrategyProviderService wormStrategyProvider;
         private void addNewFoodAndDeleteIfSpoiled()
         {
             foodOnField.ForEach((x, y, food) =>
@@ -58,6 +60,13 @@ namespace World
             });
         }
 
+        public World(NormalCoordsGenerator coordsGenerator, UniqueNamesGenerator nameGenerator, WormStrategyProviderService wormStrategyProvider)
+        {
+            this.coordsGenerator = coordsGenerator;
+            this.nameGenerator = nameGenerator;
+            this.wormStrategyProvider = wormStrategyProvider;
+        }
+
         public void nextTurn()
         {
             addNewFoodAndDeleteIfSpoiled();
@@ -69,7 +78,7 @@ namespace World
 
         public bool TryAddWorm(int x, int y)
         {
-            return wormsOnField.TrySet(x, y, new Worm(INIT_WORM_HEALTH));
+            return wormsOnField.TrySet(x, y, new Worm(nameGenerator, INIT_WORM_HEALTH, wormStrategyProvider));
         }
 
         override public string ToString()
