@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Utils.Containers
 {
-    interface StorageDataProvider<T>
+    public interface StorageDataProvider<T>
     {
         int Count { get; }
         bool TryGet(int x, int y, out T result);

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Utils
 {
-    struct Coords
+    public struct Coords
     {
         public int X, Y;
         public Coords(int x, int y)

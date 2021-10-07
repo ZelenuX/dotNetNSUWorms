@@ -7,7 +7,7 @@ using Services;
 
 namespace World
 {
-    class World
+    public class World
     {
         private static int INIT_WORM_HEALTH = WorldProperties.INIT_WORM_HEALTH;
         private static int INIT_FOOD_FRESHNESS = WorldProperties.INIT_FOOD_FRESHNESS;
@@ -16,7 +16,7 @@ namespace World
         private AbstractStorage2d<Worm> wormsOnField = new Storage2dInfinite<Worm>();
         private AbstractStorage2d<Food> foodOnField = new Storage2dInfinite<Food>();
         private StringBuilder stringBuilder = new StringBuilder();
-        private NormalCoordsGenerator coordsGenerator;
+        private ICoordsGenerator coordsGenerator;
         private UniqueNamesGenerator nameGenerator;
         private WormStrategyProviderService wormStrategyProvider;
         private void addNewFoodAndDeleteIfSpoiled()
@@ -48,11 +48,14 @@ namespace World
                 }
             });
         }
+        private void decWormsHealths()
+        {
+            wormsOnField.ForEach((x, y, worm) => --worm.Health);
+        }
         private void deleteDeadWorms()
         {
             wormsOnField.ForEach((x, y, worm) =>
             {
-                --worm.Health;
                 if (worm.Health <= 0)
                 {
                     wormsOnField.Remove(x, y);
@@ -60,7 +63,7 @@ namespace World
             });
         }
 
-        public World(NormalCoordsGenerator coordsGenerator, UniqueNamesGenerator nameGenerator, WormStrategyProviderService wormStrategyProvider)
+        public World(ICoordsGenerator coordsGenerator, UniqueNamesGenerator nameGenerator, WormStrategyProviderService wormStrategyProvider)
         {
             this.coordsGenerator = coordsGenerator;
             this.nameGenerator = nameGenerator;
@@ -71,7 +74,11 @@ namespace World
         {
             addNewFoodAndDeleteIfSpoiled();
             feedWorms();
+            decWormsHealths();
+            deleteDeadWorms();
+
             processWormTurns();
+
             feedWorms();
             deleteDeadWorms();
         }
@@ -100,6 +107,15 @@ namespace World
             }
             stringBuilder.Append("]");
             return stringBuilder.ToString();
+        }
+
+        public StorageDataProvider<Worm> GetWorms()
+        {
+            return wormsOnField;
+        }
+        public StorageDataProvider<Food> GetFood()
+        {
+            return foodOnField;
         }
     }
 }

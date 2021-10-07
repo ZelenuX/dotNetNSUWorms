@@ -5,14 +5,14 @@ using World.WormTurns;
 
 namespace World.WormStrategies
 {
-    class CircleWormStrategy : IWormStrategy
+    public class CircleWormStrategy : IWormStrategy
     {
-        private Direction firstDirection = Direction.U;
-        private Direction[] directions = { Direction.R,
-            Direction.D, Direction.D,
-            Direction.L, Direction.L,
-            Direction.U, Direction.U,
-            Direction.R };
+        private Direction firstDirection = Direction.Up;
+        private Direction[] directions = { Direction.Right,
+            Direction.Down, Direction.Down,
+            Direction.Left, Direction.Left,
+            Direction.Up, Direction.Up,
+            Direction.Right };
         private int turnNumber = -1;
 
         public IWormTurn GetNextTurn(WormAndWorldData wormAndWorldData)

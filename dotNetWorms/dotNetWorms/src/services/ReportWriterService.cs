@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Services
 {
-    class ReportWriterService
+    public class ReportWriterService
     {
         private StreamWriter Writer;
         public ReportWriterService(string reportPath)

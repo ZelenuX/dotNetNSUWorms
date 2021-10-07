@@ -6,7 +6,7 @@ using World.WormTurnPerformers;
 
 namespace World.WormTurns
 {
-    class WormDuplicate : IWormTurn
+    public class WormDuplicate : IWormTurn
     {
         public static WormDuplicatePerformer turnPerformer = new WormDuplicatePerformer();
         private static Dictionary<Direction, WormDuplicate> cashed = new Dictionary<Direction, WormDuplicate>();

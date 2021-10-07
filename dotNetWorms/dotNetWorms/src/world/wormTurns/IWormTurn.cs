@@ -6,12 +6,12 @@ using World.WormTurnPerformers;
 
 namespace World.WormTurns
 {
-    interface IWormTurn {
+    public interface IWormTurn {
         void Perform(int wormX, int wormY, AbstractStorage2d<Worm> worms, AbstractStorage2d<Food> food);
     }
 
-    enum Direction
+    public enum Direction
     {
-        U, R, D, L
+        Up, Right, Down, Left
     }    
 }

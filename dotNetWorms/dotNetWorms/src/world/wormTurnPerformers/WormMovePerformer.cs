@@ -6,23 +6,23 @@ using Utils.Containers;
 
 namespace World.WormTurnPerformers
 {
-    class WormMovePerformer : IWormTurnPerformer<WormMove>
+    public class WormMovePerformer : IWormTurnPerformer<WormMove>
     {
         public void ProcessTurn(int wormX, int wormY, WormMove turn, AbstractStorage2d<Worm> worms, AbstractStorage2d<Food> food)
         {
             int newX = wormX, newY = wormY;
             switch (turn.Direction)
             {
-                case Direction.U:
+                case Direction.Up:
                     ++newY;
                     break;
-                case Direction.R:
+                case Direction.Right:
                     ++newX;
                     break;
-                case Direction.D:
+                case Direction.Down:
                     --newY;
                     break;
-                case Direction.L:
+                case Direction.Left:
                     --newX;
                     break;
             }

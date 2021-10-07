@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Utils.Generators
 {
-    class NormalCoordsGenerator
+    public class NormalCoordsGenerator : ICoordsGenerator
     {
         private Random rand = new Random();
         private double mean;

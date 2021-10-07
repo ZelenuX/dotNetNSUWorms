@@ -10,11 +10,22 @@ using System.Threading;
 
 namespace Services
 {
-    class WormStrategyProviderService : BackgroundService
+    public class WormStrategyProviderService : BackgroundService
     {
+        private Func<IWormStrategy> WormStrategyGenerator;
+
+        public WormStrategyProviderService() {
+            WormStrategyGenerator = () => new MoveToNearestFoodStrategy();
+        }
+
+        public WormStrategyProviderService(Func<IWormStrategy> wormStrategyGenerator)
+        {
+            WormStrategyGenerator = wormStrategyGenerator;
+        }
+
         public IWormStrategy GetStrategy()
         {
-            return new MoveToNearestFoodStrategy();
+            return WormStrategyGenerator.Invoke();
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)

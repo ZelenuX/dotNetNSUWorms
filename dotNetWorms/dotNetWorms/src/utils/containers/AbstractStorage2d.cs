@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Utils.Containers
 {
-    abstract class AbstractStorage2d<T> : StorageDataProvider<T>
+    public abstract class AbstractStorage2d<T> : StorageDataProvider<T>
     {
         public abstract int Count { get; }
         public abstract bool TrySet(int x, int y, T val);

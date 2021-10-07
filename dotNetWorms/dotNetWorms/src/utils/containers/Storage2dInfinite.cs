@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Utils.Containers
 {
-    class Storage2dInfinite<T> : AbstractStorage2d<T>
+    public class Storage2dInfinite<T> : AbstractStorage2d<T>
     {
         private IDictionary<long, T> container = new Dictionary<long, T>();
 

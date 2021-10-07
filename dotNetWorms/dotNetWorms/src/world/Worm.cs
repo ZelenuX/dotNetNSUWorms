@@ -8,7 +8,7 @@ using Services;
 
 namespace World
 {
-    class Worm
+    public class Worm
     {
         public string Name { get; }
         public int Health { get; set; }

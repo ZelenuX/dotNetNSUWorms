@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Utils.Generators
 {
-    class UniqueNamesGenerator
+    public class UniqueNamesGenerator
     {
         private String nameStart;
         private int number = 1;

@@ -7,7 +7,7 @@ using Utils.Generators;
 
 namespace dotNetWorms
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -22,7 +22,7 @@ namespace dotNetWorms
                     services.AddHostedService<WorldService>();
 
                     services.AddSingleton<World.World>();
-                    services.AddSingleton<NormalCoordsGenerator>(new NormalCoordsGenerator(0, 5));
+                    services.AddSingleton<ICoordsGenerator>(new NormalCoordsGenerator(0, 5));
                     services.AddSingleton<UniqueNamesGenerator>(new UniqueNamesGenerator("BobTheWorm_"));
                     services.AddSingleton<WormStrategyProviderService>();
                     services.AddSingleton<ReportWriterService>(new ReportWriterService("./out.txt"));

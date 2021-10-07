@@ -6,7 +6,7 @@ using Utils;
 
 namespace World.WormStrategies
 {
-    class MoveToNearestFoodStrategy : IWormStrategy
+    public class MoveToNearestFoodStrategy : IWormStrategy
     {
         private static int calcDst(int x1, int y1, int x2, int y2)
         {
@@ -41,21 +41,21 @@ namespace World.WormStrategies
             Direction direction;
             if (x > 0)
             {
-                direction = Direction.R;
+                direction = Direction.Right;
             }
             else if (x < 0)
             {
-                direction = Direction.L;
+                direction = Direction.Left;
             }
             else
             {
                 if (y > 0)
                 {
-                    direction = Direction.U;
+                    direction = Direction.Up;
                 }
                 else if (y < 0)
                 {
-                    direction = Direction.D;
+                    direction = Direction.Down;
                 }
                 else
                 {

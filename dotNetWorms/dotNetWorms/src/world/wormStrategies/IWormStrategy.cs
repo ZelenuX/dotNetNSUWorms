@@ -5,7 +5,7 @@ using World.WormTurns;
 
 namespace World.WormStrategies
 {
-    interface IWormStrategy
+    public interface IWormStrategy
     {
         IWormTurn GetNextTurn(WormAndWorldData wormAndWorldData);
     }

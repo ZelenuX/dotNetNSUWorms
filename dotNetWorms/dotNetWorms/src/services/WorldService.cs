@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace Services
 {
-    class WorldService : BackgroundService
+    public class WorldService : BackgroundService
     {
         private World.World world;
         private ReportWriterService reportWriter;

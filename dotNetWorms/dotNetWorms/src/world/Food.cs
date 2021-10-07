@@ -4,7 +4,7 @@ using System.Text;
 
 namespace World
 {
-    class Food
+    public class Food
     {
         private int freshness;
 

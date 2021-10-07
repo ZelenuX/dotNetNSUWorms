@@ -5,7 +5,7 @@ using Utils.Containers;
 
 namespace World
 {
-    struct WormAndWorldData
+    public struct WormAndWorldData
     {
         public int WormX;
         public int WormY;

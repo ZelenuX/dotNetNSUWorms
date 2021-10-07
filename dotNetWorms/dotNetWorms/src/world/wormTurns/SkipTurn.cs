@@ -5,7 +5,7 @@ using Utils.Containers;
 
 namespace World.WormTurns
 {
-    class SkipTurn : IWormTurn
+    public class SkipTurn : IWormTurn
     {
         private static SkipTurn turnInstance = new SkipTurn();
 
