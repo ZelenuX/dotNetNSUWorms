@@ -70,7 +70,7 @@ namespace World
             this.wormStrategyProvider = wormStrategyProvider;
         }
 
-        public void nextTurn()
+        public virtual void nextTurn()
         {
             addNewFoodAndDeleteIfSpoiled();
             feedWorms();
@@ -83,7 +83,7 @@ namespace World
             deleteDeadWorms();
         }
 
-        public bool TryAddWorm(int x, int y)
+        public virtual bool TryAddWorm(int x, int y)
         {
             return wormsOnField.TrySet(x, y, new Worm(nameGenerator, INIT_WORM_HEALTH, wormStrategyProvider));
         }
@@ -109,11 +109,11 @@ namespace World
             return stringBuilder.ToString();
         }
 
-        public StorageDataProvider<Worm> GetWorms()
+        public virtual StorageDataProvider<Worm> GetWorms()
         {
             return wormsOnField;
         }
-        public StorageDataProvider<Food> GetFood()
+        public virtual StorageDataProvider<Food> GetFood()
         {
             return foodOnField;
         }

@@ -10,13 +10,20 @@ namespace Services
         private StreamWriter Writer;
         public ReportWriterService(string reportPath)
         {
-            Writer = File.CreateText(reportPath);
+            if (reportPath != null)
+            {
+                Writer = File.CreateText(reportPath);
+            }
         }
-        public void WriteWorldState(World.World world, int stateIndex)
+        public virtual void WriteWorldState(World.World world, int stateIndex)
         {
             string worldState = world.ToString();
             Console.WriteLine(stateIndex + ") " + worldState);
             Writer.WriteLine(worldState);
+        }
+        public virtual void Close()
+        {
+            Writer.Close();
         }
     }
 }

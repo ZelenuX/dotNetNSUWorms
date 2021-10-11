@@ -8,23 +8,7 @@ namespace Utils.Containers
     {
         private IDictionary<long, T> container = new Dictionary<long, T>();
 
-        private long xyToKey(int x, int y)
-        {
-            long res = ((long)x << sizeof(int) * 8) | (y & 0xffffffff);
-            return res;
-        }
-
         public override int Count { get { return container.Count; } }
-
-        private int keyToX(long key)
-        {
-            return (int)(key >> sizeof(int) * 8);
-        }
-
-        private int keyToY(long key)
-        {
-            return (int)key;
-        }
 
         public override void ForEach(Action<int, int, T> action)
         {
@@ -50,6 +34,22 @@ namespace Utils.Containers
         public override bool TrySet(int x, int y, T val)
         {
             return container.TryAdd(xyToKey(x, y), val);
+        }
+
+        private long xyToKey(int x, int y)
+        {
+            long res = ((long)x << sizeof(int) * 8) | (y & 0xffffffff);
+            return res;
+        }
+
+        private int keyToX(long key)
+        {
+            return (int)(key >> sizeof(int) * 8);
+        }
+
+        private int keyToY(long key)
+        {
+            return (int)key;
         }
     }
 }
